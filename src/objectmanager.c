@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:18:35 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/16 08:39:00 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 08:58:10 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_image	*create_image_list(int count)
 	int		i;
 
 	ret = malloc(sizeof(t_image) * count);
+	if (!ret)
+		return (NULL);
 	i = 0;
 	while (i < count)
 	{
@@ -54,7 +56,7 @@ t_image	*create_image_list(int count)
 	return (ret);
 }
 
-int	create_object(t_win *win, char *relative_path)
+t_image	*create_object(t_win *win, char *relative_path)
 {
 	int			h;
 	int			w;
@@ -64,9 +66,11 @@ int	create_object(t_win *win, char *relative_path)
 	h = 64;
 	img = (win->objs + (win->img_counter++));
 	img->img = mlx_xpm_file_to_image(win->mlx, relative_path, &w, &h);
+	if (!img->img)
+		return (NULL);
 	img->y = 0;
 	img->x = 0;
-	return (win->img_counter - 1);
+	return (img);
 }
 
 static t_image	*create_player_helper(t_win *win, char *path)
@@ -78,16 +82,30 @@ static t_image	*create_player_helper(t_win *win, char *path)
 	w = 10;
 	h = 10;
 	img = malloc(sizeof(t_image));
+	if (!img)
+		return (NULL);
 	img->img = mlx_xpm_file_to_image(win->mlx, path, &w, &h);
+	if (!img->img)
+	{
+		free(img);
+		return (NULL);
+	}
 	img->x = 0;
 	img->y = 0;
 	return (img);
 }
 
-void	create_player(t_win *win)
+t_player	*create_player(t_win *win)
 {
 	win->player = malloc(sizeof(t_player));
+	if (!win->player)
+		return (NULL);
 	win->player->sprites = malloc(sizeof(t_image *) * 4);
+	if (!win->player->sprites)
+	{
+		free(win->player);
+		return (NULL);
+	}
 	win->player->x = 0;
 	win->player->y = 0;
 	win->player->move_count = 0;
@@ -97,4 +115,5 @@ void	create_player(t_win *win)
 	win->player->sprites[2] = create_player_helper(win, SP_PLAYER_LEFT);
 	win->player->sprites[3] = create_player_helper(win, SP_PLAYER_RIGHT);
 	win->player->cur_sprite = win->player->sprites[0];
+	return (win->player);
 }

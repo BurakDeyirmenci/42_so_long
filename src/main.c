@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 12:29:01 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/16 12:43:43 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 08:28:01 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,18 @@ int	check_extension(char *str)
 	i = 0;
 	j = 0;
 	berex = "reb.";
-	while (str[i])
-		i++;
-	i--;
-	while (berex[j] == str[i])
-	{
-		i--;
-		j++;
-	}
-	if (!berex[j])
-	{
+	while (str[++i])
+		continue ;
+	while (berex[j++] == str[--i])
+		continue ;
+	if (!berex[j - 1])
 		return (1);
-	}
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_win	*win;
-	char	*berex;
-	int		i;
 
 	if (argc < 2)
 	{

@@ -6,11 +6,18 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:30:16 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/16 10:03:44 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 08:34:26 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "playerman.h"
+
+void	__change_player_position_helper(char *target, char *source)
+{
+	*target = 'P';
+	*source = '0';
+}
 
 void	change_player_position(t_win *win, int x, int y)
 {
@@ -18,11 +25,13 @@ void	change_player_position(t_win *win, int x, int y)
 	char		*target_block;
 	char		*source_block;
 
+	if (win->gameover)
+		return ;
 	map = win->map->map;
 	source_block = &(map[win->player->y / 64][win->player->x / 64]);
 	target_block = &(map[y / 64][x / 64]);
 	if (*target_block == 'E' && win->gateopen)
-	{	
+	{
 		win->gameover = 1;
 		win->player->move_count++;
 	}
@@ -30,8 +39,7 @@ void	change_player_position(t_win *win, int x, int y)
 	{
 		if (*target_block == 'C')
 			win->score++;
-		*target_block = 'P';
-		*source_block = '0';
+		__change_player_position_helper(target_block, source_block);
 		win->player->x = x;
 		win->player->y = y;
 		win->player->move_count++;

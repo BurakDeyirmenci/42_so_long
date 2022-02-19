@@ -1,7 +1,7 @@
 CC			= gcc
 MINILIBX	= minilibx/libmlx.a
-LFLAGS		= -framework OpenGL -framework AppKit -L./minilibx -lmlx -Wall -Wextra -Werror
-CFLAGS		= -I./include -I./gnl -I./libft -I./minilibx 
+LFLAGS		= -framework OpenGL -framework AppKit -L./minilibx -lmlx
+CFLAGS		= -I./include -I./gnl -I./libft -I./minilibx -Wall -Wextra -Werror
 NAME		= so_long
 SRC_DIR		= src
 SRCS		= $(wildcard $(SRC_DIR)/*.c) gnl/get_next_line.c gnl/get_next_line_utils.c

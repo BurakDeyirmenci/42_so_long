@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:25:55 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/16 11:57:13 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 08:30:29 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,10 @@ int	on_key_pressed(int keycode, void *param)
 		change_player_position(win, win->player->x - 64, win->player->y);
 	else if (keycode == KEY_ARROW_RIGHT || keycode == KEY_D)
 		change_player_position(win, win->player->x + 64, win->player->y);
-	if (win->gameover)
-	{
-		render_end(win);
-		return (0);
-	}
 	change_player_side(win, keycode);
-	render_map(win);
+	if (win->gameover)
+		render_end(win);
+	else
+		render_map(win);
 	return (0);
 }

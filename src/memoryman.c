@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:30:00 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/15 14:02:23 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 09:02:14 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	free_player(t_win *win)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (win->player->sprites && i < 4)
 	{
-		mlx_destroy_image(win->mlx, win->player->sprites[i]->img);
+		if (win->player->sprites[i] && win->player->sprites[i]->img)
+			mlx_destroy_image(win->mlx, win->player->sprites[i]->img);
 		free(win->player->sprites[i++]);
 	}
 	free(win->player->sprites);
