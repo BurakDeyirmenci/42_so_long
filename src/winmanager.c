@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:11:02 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 09:07:06 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 10:55:25 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,14 @@
 #include "objectmanager.h"
 #include "winmanager.h"
 
-void	__init_win_helper_freemap(t_win *win)
+static void	__init_win_helper_freemap(t_win *win)
 {
-	if (win->map)
-		free_map(win->map);
+	free_map(win->map);
 	free(win);
 	error(ERRMSG_MALLOC, ERRCODE_MALLOC);
 }
 
-void	__init_win_helper_initmlx(t_win *win, char *title)
+static void	__init_win_helper_initmlx(t_win *win, char *title)
 {
 	win->mlx = mlx_init();
 	if (!win->mlx)
@@ -40,19 +39,29 @@ void	__init_win_helper_initmlx(t_win *win, char *title)
 		__init_win_helper_freemap(win);
 }
 
-void	create_content(t_win *win)
+static int	__create_content_helper(t_win *win)
 {
 	int	i;
 
 	i = 0;
-	if (!create_object(win, SP_OBJ_TREE) || \
-		!create_object(win, SP_OBJ_COIN) || \
-		!create_object(win, SP_OBJ_BACKGROUND) || \
-		!create_object(win, SP_OBJ_GATE) || \
-		!create_player(win))
+	while (i < win->img_counter)
+		if (!(win->objs[i++].img))
+			return (1);
+	if (!win->player)
+		return (1);
+	return (0);
+}
+
+void	create_content(t_win *win)
+{
+	create_object(win, SP_OBJ_TREE);
+	create_object(win, SP_OBJ_COIN);
+	create_object(win, SP_OBJ_BACKGROUND);
+	create_object(win, SP_OBJ_GATE);
+	create_player(win);
+	if (__create_content_helper(win))
 	{
-		while (i < win->img_counter)
-			mlx_destroy_image(win->mlx, win->objs[i++].img);
+		free_objs(win);
 		free_player(win);
 		mlx_destroy_window(win->mlx, win->win);
 		__init_win_helper_freemap(win);
@@ -65,7 +74,7 @@ t_win	*init_win(char *map_path, char *title)
 
 	ret = malloc(sizeof(t_win));
 	if (!ret)
-		return (NULL);
+		error(ERRMSG_MALLOC, ERRCODE_MALLOC);
 	ret->map = read_map(map_path);
 	if (!ret->map || !check_map(ret->map))
 		__init_win_helper_freemap(ret);

@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:29:19 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/15 14:02:42 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 09:44:28 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 void	free_map(t_map *map);
 void	free_player(t_win *win);
 void	free_win(t_win *win);
+void	free_objs(t_win *win);
 
 #endif

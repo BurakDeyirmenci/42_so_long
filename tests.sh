@@ -15,9 +15,10 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 FILES=$(ls tests)
+rm -rf tests/log.txt
 for i in $FILES
 do
-	./so_long tests/$i > /dev/null
+	./so_long tests/$i >> log.txt
 	# Dönüş kodu hatalı olmalı
 	if [ $? -ne 0 ]; then
 		tput setaf 2

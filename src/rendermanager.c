@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:58:33 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/16 09:00:29 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 10:54:18 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "mlx.h"
 #include "rendermanager.h"
 
-static void	render_map_helper(t_win *win, char chr, int *x, int *y)
+static void	__render_map_helper(t_win *win, char chr, int *x, int *y)
 {
 	if (chr == '1')
 	{
@@ -60,7 +60,7 @@ void	render_map(t_win *win)
 		while (map[line][col])
 		{
 			render_object(win, 2, x, y);
-			render_map_helper(win, map[line][col++], &x, &y);
+			__render_map_helper(win, map[line][col++], &x, &y);
 		}
 		y += 64;
 		x = 0;

@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:18:06 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/16 12:46:16 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 09:26:19 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include "ft_printf.h"
 #include "mapmanager.h"
+#include "memoryman.h"
 #include "get_next_line.h"
 #include "libft.h"
 
@@ -22,6 +23,8 @@ t_map	*create_empty_map(void)
 	t_map	*ret;
 
 	ret = malloc(sizeof(t_map));
+	if (!ret)
+		return (ret);
 	ret->h = 0;
 	ret->w = 0;
 	ret->map = NULL;
@@ -59,11 +62,19 @@ t_map	*read_map(char *path)
 	if (!map)
 		return (NULL);
 	ret = create_empty_map();
+	if (!ret)
+	{
+		free(map);
+		return (NULL);
+	}
 	ret->map = ft_split(map, '\n');
+	if (!ret->map)
+	{
+		free_map(ret);
+		return (NULL);
+	}
 	while (ret->map[ret->h])
 		ret->h++;
-	if (ret->h == 0)
-		return (NULL);
 	ret->w = ft_strlen(ret->map[0]);
 	free(map);
 	return (ret);

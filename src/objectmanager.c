@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:18:35 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 08:58:10 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 10:57:20 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_image	*create_object(t_win *win, char *relative_path)
 	return (img);
 }
 
-static t_image	*create_player_helper(t_win *win, char *path)
+static t_image	*__create_player_helper(t_win *win, char *path)
 {
 	t_image	*img;
 	int		w;
@@ -104,16 +104,17 @@ t_player	*create_player(t_win *win)
 	if (!win->player->sprites)
 	{
 		free(win->player);
+		win->player = NULL;
 		return (NULL);
 	}
 	win->player->x = 0;
 	win->player->y = 0;
 	win->player->move_count = 0;
 	win->player->side = KEY_ARROW_DOWN;
-	win->player->sprites[0] = create_player_helper(win, SP_PLAYER_DOWN);
-	win->player->sprites[1] = create_player_helper(win, SP_PLAYER_UP);
-	win->player->sprites[2] = create_player_helper(win, SP_PLAYER_LEFT);
-	win->player->sprites[3] = create_player_helper(win, SP_PLAYER_RIGHT);
+	win->player->sprites[0] = __create_player_helper(win, SP_PLAYER_DOWN);
+	win->player->sprites[1] = __create_player_helper(win, SP_PLAYER_UP);
+	win->player->sprites[2] = __create_player_helper(win, SP_PLAYER_LEFT);
+	win->player->sprites[3] = __create_player_helper(win, SP_PLAYER_RIGHT);
 	win->player->cur_sprite = win->player->sprites[0];
 	return (win->player);
 }

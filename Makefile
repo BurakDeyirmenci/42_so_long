@@ -19,22 +19,26 @@ $(MINILIBX):
 $(NAME): $(MINILIBX) $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o $(NAME)
 
+norm:
+	@norminette src/*.c include/*.h
+
 test: $(NAME)
 	@bash tests.sh
 
 run: $(NAME)
-	./$(NAME) $(file)
+	./$(NAME) maps/map1.ber
 
 re: fclean all
 
 clean:
 	rm -rf $(OBJS)
+	rm -rf log.txt
 
 bonus:
-	@echo "I don't have :("
+	@echo "I don't have $@:("
 
 fclean: clean
 	rm -rf $(NAME)
 	@-make clean -C minilibx
 
-.PHONY: clean run fclean re all test bonus
+.PHONY: clean run fclean re all test bonus norm

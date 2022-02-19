@@ -6,14 +6,14 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:30:16 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 08:34:26 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 10:56:03 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "playerman.h"
 
-void	__change_player_position_helper(char *target, char *source)
+static void	__change_player_position_helper(char *target, char *source)
 {
 	*target = 'P';
 	*source = '0';

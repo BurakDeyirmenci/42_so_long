@@ -6,12 +6,13 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:25:55 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 08:30:29 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 09:47:59 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "defines.h"
+#include "ft_printf.h"
 #include "memoryman.h"
 #include "winmanager.h"
 #include "rendermanager.h"
@@ -21,6 +22,7 @@
 int	on_destroy(void *param)
 {
 	free_win((t_win *)param);
+	ft_printf("\nBye...\n");
 	exit(0);
 }
 
