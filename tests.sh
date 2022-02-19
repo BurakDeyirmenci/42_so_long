@@ -1,5 +1,5 @@
 #!/bin/bash 
-# This file is part of the so_long
+# This file is part of the so_long project at Ecole 42 Schools
 # Copyright (c) 2022 42istanbul
 #  
 # This program is free software: you can redistribute it and/or modify  
@@ -15,7 +15,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 FILES=$(ls tests)
-rm -rf tests/log.txt
+rm -rf log.txt
 for i in $FILES
 do
 	./so_long tests/$i >> log.txt

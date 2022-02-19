@@ -26,7 +26,7 @@ test: $(NAME)
 	@bash tests.sh
 
 run: $(NAME)
-	./$(NAME) maps/map1.ber
+	./$(NAME) maps/map2.ber
 
 re: fclean all
 

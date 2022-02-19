@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:09:13 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 11:05:07 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/19 15:04:45 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ void	print_move_count(t_win *win)
 	char	*str;
 
 	str = ft_strdup("Move count: ");
+	if (!str)
+		return ;
 	number = ft_itoa(win->player->move_count);
+	if (!number)
+	{
+		free(str);
+		return ;
+	}
 	ft_strappend(&str, number);
 	mlx_string_put(win->mlx, win->win, 10, 15, 0xf6f7f7, str);
 	ft_printf("%s\r", str);
