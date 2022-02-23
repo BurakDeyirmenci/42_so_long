@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:30:00 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 13:28:27 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/23 12:14:43 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	free_win(t_win *win)
 {
-	free_objs(win);
 	free_map(win->map);
+	free_objs(win);
 	free_player(win);
 	mlx_destroy_window(win->mlx, win->win);
 	free(win);
@@ -27,8 +27,6 @@ void	free_objs(t_win *win)
 {
 	int	i;
 
-	if (!win || !win->objs)
-		return ;
 	i = 0;
 	while (i < win->img_counter)
 	{
@@ -43,8 +41,6 @@ void	free_map(t_map *map)
 {
 	int	i;
 
-	if (!map)
-		return ;
 	i = 0;
 	while (map->map && map->map[i])
 		free(map->map[i++]);
@@ -56,8 +52,6 @@ void	free_player(t_win *win)
 {
 	int	i;
 
-	if (!win || win->player)
-		return ;
 	i = 0;
 	while (win->player->sprites && i < 4)
 	{

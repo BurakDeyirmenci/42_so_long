@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 08:30:16 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 10:56:03 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/23 12:17:09 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	change_player_position(t_win *win, int x, int y)
 		__change_player_position_helper(target_block, source_block);
 		win->player->x = x;
 		win->player->y = y;
-		win->player->move_count++;
 	}
 	if (win->target_score - win->score == 0)
 		win->gateopen = 1;
+	win->player->move_count++;
 }
 
 void	change_player_side(t_win *win, t_side side)
