@@ -20,7 +20,7 @@ $(NAME): $(MINILIBX) $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o $(NAME)
 
 norm:
-	@norminette src/*.c include/*.h
+	@norminette src/*.c include/*.h gnl/*.c gnl/*.h
 
 test: $(NAME)
 	@bash tests.sh

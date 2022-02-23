@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:18:06 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/19 09:26:19 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/21 19:40:41 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_map	*read_map(char *path)
 	ret->map = ft_split(map, '\n');
 	if (!ret->map)
 	{
+		free(map);
 		free_map(ret);
 		return (NULL);
 	}
