@@ -46,6 +46,6 @@ do
 	runsl tests/$i
 	dotest $? $i
 done
-runsl tests/wrongpath.ber
+runsl tests/wrongpath.ber # böyle bir dosya yok
 dotest $? wrongpath
 exit 0 # make'in hatasız kabül etmesi için 0 ile çık
