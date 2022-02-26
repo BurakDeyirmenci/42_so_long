@@ -36,7 +36,7 @@ testm: all
 testb: bonus
 	@bash tests.sh
 
-run: $(NAME)
+run: all
 	./$(NAME) maps/map2.ber
 
 re: fclean all
