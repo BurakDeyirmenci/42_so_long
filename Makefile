@@ -21,7 +21,7 @@ all: $(MOBJS) $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(MINILIBX):
-	make -C minilibx
+	make -C minilibx 2> /dev/null
 	@echo "MINILIBX compiling is done!"
 
 $(NAME): $(MINILIBX) $(OBJS)
@@ -30,7 +30,10 @@ $(NAME): $(MINILIBX) $(OBJS)
 norm:
 	@norminette src/*.c include/*.h gnl/*.c gnl/*.h
 
-test: $(NAME)
+testm: all
+	@bash tests.sh
+
+testb: bonus
 	@bash tests.sh
 
 run: $(NAME)
@@ -51,4 +54,4 @@ fclean: clean
 	rm -rf $(NAME)
 	@-make clean -C minilibx
 
-.PHONY: clean run fclean re all test bonus norm
+.PHONY: clean run fclean re all testm testb bonus norm
