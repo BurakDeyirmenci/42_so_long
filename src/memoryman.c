@@ -6,7 +6,7 @@
 /*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:30:00 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/23 12:14:43 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/02/26 08:48:38 by mkaramuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ void	free_map(t_map *map)
 {
 	int	i;
 
-	i = 0;
-	while (map->map && map->map[i])
-		free(map->map[i++]);
-	free(map->map);
+	if (map)
+	{
+		i = 0;
+		while (map->map && map->map[i])
+			free(map->map[i++]);
+		free(map->map);
+	}
 	free(map);
 }
 

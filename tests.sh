@@ -15,21 +15,37 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 FILES=$(ls tests)
-rm -rf log.txt
-for i in $FILES
-do
-	./so_long tests/$i >> log.txt
+
+# so_long'u çalıştırır ve standart çıktısını log.txt dosyasına yazar.
+function runsl()
+{
+	./so_long $1 >> log.txt
+}
+
+# Dönüş tipine göre testi geçip geçmediğini denetler
+function dotest()
+{
 	# Dönüş kodu hatalı olmalı
-	if [ $? -ne 0 ]; then
+	if [ $1 -ne 0 ]; then
 		tput setaf 2
-		printf "%-30s %s" $i  "[OK]"
+		printf "%-30s %s" $2  "[OK]"
 		tput sgr0
 	else
 		tput setaf 1
-		printf "%-30s %s" $i  "[KO]"
+		printf "%-30s %s" $2  "[KO]"
 		tput sgr0
 	fi
 	printf "\n"
-done
+}
 
-exit 0
+rm -rf log.txt
+for i in $FILES
+do
+	# Her dosya için test gerçekleştir ve sonucu
+	# denetlemesi için dotest'e gönder
+	runsl tests/$i
+	dotest $? $i
+done
+runsl tests/wrongpath.ber
+dotest $? wrongpath
+exit 0 # make'in hatasız kabül etmesi için 0 ile çık
