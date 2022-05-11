@@ -40,7 +40,7 @@ push:
 	make fclean
 	git add gnl/* include/* maps/* sprite/* src/* Makefile
 	git commit -m "$(c)"
-	git push
+	git push -u git@vogsphere.42istanbul.com.tr:vogsphere/intra-uuid-0d1a5090-92ba-47c6-b5d7-8d928e2ecbac-4049984-rdeyirme
 
 clean:
 	rm -rf $(OBJS)
