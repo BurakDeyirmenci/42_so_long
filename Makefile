@@ -5,8 +5,6 @@ CFLAGS		= -I./include -I./gnl -I./libft -I./minilibx -Wall -Wextra -Werror
 NAME		= so_long
 SRC_DIR		= src
 
-BSRCS		= $(wildcard $(SRC_DIR)/bonus/*_bonus.c)
-BOBJS		= $(BSRCS:.c=.o)
 
 MSRCS		= $(wildcard $(SRC_DIR)/mandatory/*.c)
 MOBJS		= $(MSRCS:.c=.o)
@@ -30,28 +28,28 @@ $(NAME): $(MINILIBX) $(OBJS)
 norm:
 	@norminette src/*.c include/*.h gnl/*.c gnl/*.h
 
-testm: all
-	@bash tests.sh
-
-testb: bonus
+test: all
 	@bash tests.sh
 
 run: all
-	./$(NAME) maps/map2.ber
+	./$(NAME) maps/map1.ber
 
 re: fclean all
+
+push:
+	make fclean
+	git add gnl/* include/* maps/* sprite/* src/* Makefile
+	git commit -m "$(c)"
+	git push
 
 clean:
 	rm -rf $(OBJS)
 	rm -rf $(MOBJS)
-	rm -rf $(BOBJS)
 	rm -rf log.txt
 
-bonus: OBJS += $(BOBJS)
-bonus: $(BOBJS) $(NAME)
 
 fclean: clean
 	rm -rf $(NAME)
 	@-make clean -C minilibx
 
-.PHONY: clean run fclean re all testm testb bonus norm
+.PHONY: clean run fclean re all test norm

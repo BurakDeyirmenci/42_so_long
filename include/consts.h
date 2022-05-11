@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdeyirme <rdeyirme@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 12:51:19 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/21 19:45:16 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/05/09 12:15:05 by rdeyirme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # define SP_PLAYER_UP 		"./sprite/player/player_up.xpm"
 # define SP_PLAYER_LEFT 	"./sprite/player/player_left.xpm"
 # define SP_PLAYER_RIGHT 	"./sprite/player/player_right.xpm"
-# define SP_OBJ_BACKGROUND 	"./sprite/grass.xpm"
-# define SP_OBJ_TREE 		"./sprite/tree.xpm"
-# define SP_OBJ_COIN 		"./sprite/coin_64.xpm"
-# define SP_OBJ_GATE		"./sprite/gate.xpm"
+# define SP_OBJ_BACKGROUND 	"./sprite/water.xpm"
+# define SP_OBJ_ICEBERG 	"./sprite/iceberg.xpm"
+# define SP_OBJ_FISH 		"./sprite/fish.xpm"
+# define SP_OBJ_EGG 		"./sprite/egg.xpm"
 # define WIN_TITLE 			"so_long"
 # define KEY_ARROW_LEFT		123
 # define KEY_ARROW_RIGHT	124

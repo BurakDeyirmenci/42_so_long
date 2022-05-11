@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   myutils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdeyirme <rdeyirme@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:09:13 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/26 09:21:52 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/05/11 11:50:31 by rdeyirme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	print_move_count(t_win *win)
 		return ;
 	}
 	ft_strappend(&str, number);
+	mlx_string_put(win->mlx, win->win, 10, 15, 0xffffff, str);
 	ft_printf("%s\r", str);
 	free(str);
 	free(number);

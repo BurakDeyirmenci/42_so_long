@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   winmanager.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkaramuk <mkaramuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rdeyirme <rdeyirme@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 14:11:02 by mkaramuk          #+#    #+#             */
-/*   Updated: 2022/02/23 11:54:16 by mkaramuk         ###   ########.fr       */
+/*   Updated: 2022/05/09 12:12:31 by rdeyirme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ static int	__create_content_helper(t_win *win)
 
 void	create_content(t_win *win)
 {
-	create_object(win, SP_OBJ_TREE);
-	create_object(win, SP_OBJ_COIN);
+	create_object(win, SP_OBJ_ICEBERG);
+	create_object(win, SP_OBJ_FISH);
 	create_object(win, SP_OBJ_BACKGROUND);
-	create_object(win, SP_OBJ_GATE);
+	create_object(win, SP_OBJ_EGG);
 	create_player(win);
 	if (__create_content_helper(win))
 	{
